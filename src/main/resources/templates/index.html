@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$("#p1").text("");
+$("#p2").text("");
+
+var json1 ={
+		"bangou":"1",
+		"name":"鈴木"
+		};
+
+$.ajax({
+	url:"http://localhost:8080/test1/index",
+	type:"POST",
+	contentType:"application/json",
+	data:JSON.Stringify(json1),
+	dataType:"json"
+}).done(function(data1,textStatus,jqXHR){
+	$("#p1").text(jqXHR.status);
+	$("#p2").text(JSON.Stringify(data1));
+}).fail(function(jqXHR,textStatus,errorThrown){
+	$("#p1").text(jqXHR.status);
+}).always(function(){
+});
+</script>
+<title>JSONでの値の受け渡し</title>
+</head>
+<body>
+<p id="p1"></p>
+<p id="p2"></p>
+</body>
+</html>
